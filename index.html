@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Quote Generator with Hearts and Images</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+            color: #333;
+            flex-direction: column;
+        }
+
+        .quote-container {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 80%;
+            max-width: 600px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .quote-text {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .quote-image {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .generate-button {
+            font-size: 1rem;
+            padding: 10px 20px;
+            background-color: #5C6BC0;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .generate-button:hover {
+            background-color: #3f51b5;
+        }
+
+        .heart {
+            position: absolute;
+            color: red;
+            font-size: 20px;
+            animation: floatUp 5s infinite linear;
+            opacity: 0.7;
+        }
+
+        @keyframes floatUp {
+            from {
+                transform: translateY(100vh);
+                opacity: 1;
+            }
+            to {
+                transform: translateY(-10vh);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="quote-container">
+        <img id="quoteImage" class="quote-image" src="Snapchat-13537151.jpg" alt="Quote Image">
+        <p id="quote" class="quote-text">Happy birthday to my favorite person in the whole world💝.
+        </p>
+        <div class="button-container">
+            <button id="quoteButton" class="generate-button" onclick="displayRandomQuote()">mohtarmaa aage badho ab😘</button>
+        </div>
+    </div>
+
+    <script>
+        const quotes = [    
+            "I wish I could be there — to hold you, to look into your eyes, to remind you in person just how much you mean to me. But distance has its own way of testing love, and every single mile between us only makes me realize how deeply I feel for you.",
+            "You have been my strength in silence, my calm in the chaos. Even when life pulls us in different directions, my heart always finds its way back to you. You deserve more than just a message — you deserve the whole world.",
+            "ab thoda hindi😊.mai sach mai bohot jyada nasib vala hu ki aap ho meri life mai , bs aap aesehi rehna baki to sath mai dono ne socha hua bohot sari chize karna baki hai😊",
+            "I may not be by your side today, but I’m always with you — in love, in spirit, in everything",
+            "so my love aaj ka ye din aapke liye aekdum mast rahe or aap puri life khush raho bss or aapka pyar hamesha mere dil mai rahega...I LOVE YOU SOO MUCH💝",
+        ];
+
+        const images = [
+            "Snapchat-13537151.jpg",
+            "Snapchat-957016895.jpg",
+            "Snapchat-1193821800.jpg",
+            "Snapchat-1420317667.jpg",
+            "Snapchat-2001754353.jpg"
+        ];
+
+        const buttonNames = [
+            "or thoda aage wifey", "ro thodasa ab","hanji or bhi hai ","kuchhu muchhuu bs ab aek bar or","5","6"
+        ];
+
+        let index = 0;
+
+        function displayRandomQuote() {
+            if (index < quotes.length) {
+                document.getElementById("quote").textContent = quotes[index];
+                document.getElementById("quoteImage").src = images[index];
+                document.getElementById("quoteButton").textContent = buttonNames[index];  
+                index++;
+            }
+
+            // Hide button when all quotes are shown
+            if (index === quotes.length) {
+                document.getElementById("quoteButton").style.display = "none";
+            }
+        }
+
+        function createHearts() {
+            for (let i = 0; i < 60; i++) {
+                let heart = document.createElement("div");
+                heart.classList.add("heart");
+                heart.innerHTML = "&#10084;"; // Heart symbol
+                heart.style.left = Math.random() * 100 + "vw";
+                heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+                heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+                document.body.appendChild(heart);
+                setTimeout(() => {
+                    heart.remove();
+                }, 5000);
+            }
+        }
+        setInterval(createHearts, 1000);
+    </script>
+</body>
+</html>
